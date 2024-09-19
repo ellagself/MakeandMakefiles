@@ -8,10 +8,10 @@ CC = g++
 TARGET = employee
 CFLAGS = -g -Wall -Wextra
 
-default: employee
+default: $(TARGET)
 
-employee: Employee.o main.o
-	$(CC) $(CFLAGS) -o employee Employee.o main.o
+employee: Employee.o Officer.o Supervisor.o main.o
+	$(CC) $(CFLAGS) -o $(TARGET) Employee.o Officer.o Supervisor.o main.o
 
 Employee.o: Employee.cpp Employee.h
 	$(CC) $(CFLAGS) -c Employee.cpp
@@ -26,4 +26,4 @@ main.o: main.cpp Employee.h Officer.h Supervisor.h
 	$(CC) $(CFLAGS) -c main.cpp
 
 clean:
-	$(RM) employee *.o *~
+	$(RM) $(TARGET) *.o *~
